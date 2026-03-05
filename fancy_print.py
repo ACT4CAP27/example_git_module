@@ -29,14 +29,14 @@ def main():
 
     console = Console()
 
-    # Generate ASCII art using the 'art' library
-    # 'block' and 'cybermedium' are examples of cool fonts
-    art1 = text2art(param1, font="block")
-    art2 = text2art(param2, font="cybermedium")
+    # Generate ASCII art using narrower fonts to prevent terminal line-wrapping
+    art1 = text2art(param1, font="doom")
+    art2 = text2art(param2, font="starwars")
 
     # Wrap the ASCII art in beautiful styled panels using 'rich'
+    # Use no_wrap=True on Text to avoid rich wrapping the ASCII lines if the terminal is narrow
     panel1 = Panel(
-        Align.center(Text(art1, style="bold cyan")),
+        Text(art1, style="bold cyan", no_wrap=True),
         title="[bold yellow]✨ PARAMETER 1 ✨[/bold yellow]",
         border_style="cyan",
         padding=(1, 4),
@@ -44,7 +44,7 @@ def main():
     )
 
     panel2 = Panel(
-        Align.center(Text(art2, style="bold magenta")),
+        Text(art2, style="bold magenta", no_wrap=True),
         title="[bold green]🚀 PARAMETER 2 🚀[/bold green]",
         border_style="magenta",
         padding=(1, 4),
